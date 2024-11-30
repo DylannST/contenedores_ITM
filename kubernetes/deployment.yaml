@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: 1128282732-deployment
+  labels:
+    app: jeg-1128282732
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jeg-1128282732
+  template:
+    metadata:
+      labels:
+        app: jeg-1128282732
+    spec:
+      containers:
+      - name: mi-contenedor
+        image: CONTAINER_IMAGE
+        ports:
+        - containerPort: 5000
