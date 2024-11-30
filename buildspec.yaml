@@ -16,11 +16,12 @@ phases:
       # Build Docker Image
       - echo "Construyendo imagen de docker"
       - cd ./docker/tercera-aplicacion
-      - docker build -t 047719650114.dkr.ecr.us-east-1.amazonaws.com/j1128282732:$TAG .
+      - docker build -t 047719650114.dkr.ecr.us-east-1.amazonaws.com/d1152222423:$TAG .
   post_build:
     commands:
       # Push Docker Image to ECR Repository
       - echo "Subiendo imagen a ECR"
-      - docker push 047719650114.dkr.ecr.us-east-1.amazonaws.com/j1128282732:$TAG
+      - docker push 047719650114.dkr.ecr.us-east-1.amazonaws.com/d1152222423:$TAG
       - aws eks update-kubeconfig --region us-east-1 --name scrumptious-creature-1732631251
-      - kubectl get deployments
+      - kubectl apply -f ./kubernetes/deployment.yaml
+      - kubectl apply -f ./kubernetes/nodeport.yaml
